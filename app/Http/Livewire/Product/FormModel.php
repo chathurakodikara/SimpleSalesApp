@@ -8,12 +8,8 @@ use Livewire\Component;
 class FormModel extends Component
 {
     protected $listeners  = ['createProduct', 'editProduct'];
-
-    
-
     public $modelProductForm = false;
     public $formTitle = null;
-
 
     public  $code, $name, $mrp, $distributor_price, $weight_volume, $unit;
   
@@ -34,16 +30,17 @@ class FormModel extends Component
 
     public function createProduct()
     {
-        $this->resetErrorBag();
+        $this->formReset();
+
         $this->modelProductForm = true;
-        $this->formTitle = 'New Product';
+        $this->formTitle = 'Add SKU';
     }
 
     public function editProduct(Product $product)
     {
         $this->resetErrorBag();
         $this->modelProductForm = true;
-        $this->formTitle = 'Update Product';
+        $this->formTitle = 'Update SKU';
 
         $this->sku_id = $product->id;
 
@@ -71,17 +68,20 @@ class FormModel extends Component
             'user_id' =>auth()->id()
         ]);
 
-        $this->formReset();
-
+        
         session()->flash('successProduct', $this->sku_id ? 'Product Updated!' : 'Product Created!');
         $this->emitTo('product.index', 'refreshIndex');
+        $this->formReset();
     }
 
     public function formReset()
     {
-        $this->reset(['code', 'sku_id', 'name', 'mrp', 'distributor_price', 'weight_volume', 'unit']);
-        
+        $this->reset(['code', 'name', 'mrp', 'distributor_price', 'weight_volume', 'unit']);
+        $this->resetErrorBag();
+
+        $this->sku_id = null;
     }
+
     public function render()
     {
         return view('livewire.product.form-model');

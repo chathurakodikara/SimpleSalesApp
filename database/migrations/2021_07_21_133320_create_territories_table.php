@@ -15,9 +15,7 @@ class CreateTerritoriesTable extends Migration
     {
         Schema::create('territories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('zone_id')->constrained();
             $table->foreignId('region_id')->constrained();
-            $table->string('code',12)->unique();
             $table->string('name');
             $table->timestamps();
         });

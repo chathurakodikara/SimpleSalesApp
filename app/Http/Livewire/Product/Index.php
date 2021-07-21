@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     use WithPagination;
-    protected $listeners  = ['refreshIndex', 'searchIndex'];
+    protected $listeners  = ['refreshIndex' => 'render', 'searchIndex'];
 
     public $search;
 
@@ -18,10 +18,7 @@ class Index extends Component
         $this->search = $search;
         $this->resetPage();
     }
-    public function refreshIndex()
-    {
-        $this->render();
-    }
+
     public function render()
     {
         $products = Product::where('name', 'LIKE', '%'.$this->search.'%')

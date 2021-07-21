@@ -1,18 +1,10 @@
 <div>
     <x-jet-dialog-modal wire:model="modelProductForm" maxWidth="2xl">
         <x-slot name="title"> 
-            <div class=" flex items-center justify-between gap-2">
-                {{ $formTitle }} 
-
-     
-                <x-msg-success sKey="successProduct" />
-
-            </div>
+            {{ $formTitle }} 
         </x-slot>
         <x-slot name="content">
-
             <div>
-
                 <x-form-label>
                     <div>SKU ID <span class=" req">*</span></div>
                     <x-form-input  class=" bg-gray-100 border-opacity-20" wire:model="sku_id" for='' disabled/>
@@ -59,10 +51,10 @@
             </div>      
         </x-slot>
         <x-slot name="footer">
-            <div class=" flex w-full justify-end">
-                <x-btn-primary wire:click.prevent="store()">Save</x-btn.prymary>
+            <div class=" flex justify-between items-center w-full gap-x-2">
+                <x-msg-success sKey="successProduct" />
+                <x-btn-primary class=" ml-auto" wire:click.prevent="store()">Save</x-btn.prymary>
             </div>
-
         </x-slot>
     </x-jet-dialog-modal>
 </div>

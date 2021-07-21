@@ -17,8 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', App\Http\Livewire\Product\Index::class);
-Route::get('/materials', App\Http\Livewire\Material\Index::class);
+Route::get('/products', App\Http\Livewire\Product\Index::class)->name('products');
+Route::get('/zones', App\Http\Livewire\Zone\Index::class)->name('zones');
+Route::get('/regions', App\Http\Livewire\Region\Index::class)->name('regions');
+Route::get('/territories', App\Http\Livewire\Territory\Index::class)->name('territories');
+
+
 
 
 
