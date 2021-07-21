@@ -13,7 +13,7 @@ class FormModel extends Component
     protected $listeners  = ['create', 'edit'];
 
     protected $rules = [
-        'territory_name' => 'required|max:250',
+        'territory_name' => 'required|max:190',
         'region_id' => 'required|exists:regions,id',
     ];
 

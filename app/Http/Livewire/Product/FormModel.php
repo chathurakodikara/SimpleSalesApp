@@ -19,7 +19,7 @@ class FormModel extends Component
     {
         return [
             'code' =>'required|unique:products,code,'.$this->sku_id,
-            'name' => 'required|max:250|string',
+            'name' => 'required|max:190|string',
             'mrp' => 'required|numeric|max:999999.99',
             'distributor_price' => 'required|numeric|max:999999.99',
             'weight_volume' => 'required|numeric|max:999999.99',

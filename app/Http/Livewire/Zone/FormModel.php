@@ -10,7 +10,7 @@ class FormModel extends Component
     protected $listeners  = ['create', 'edit'];
 
     protected $rules = [
-        'long_description' => 'required|max:250',
+        'long_description' => 'required|max:190',
         'short_description' => 'required|max:50',
     ];
 
