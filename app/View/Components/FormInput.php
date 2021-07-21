@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 
 class FormInput extends Component
 {
+    public $for;
     /**
      * Create a new component instance.
      *

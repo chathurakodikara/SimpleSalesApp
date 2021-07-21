@@ -18,6 +18,10 @@ Route::get('/', function () {
 });
 
 Route::get('/products', App\Http\Livewire\Product\Index::class);
+Route::get('/materials', App\Http\Livewire\Material\Index::class);
+
+
+
 
 
 

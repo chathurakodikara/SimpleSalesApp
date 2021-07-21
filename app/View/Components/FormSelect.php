@@ -6,6 +6,8 @@ use Illuminate\View\Component;
 
 class FormSelect extends Component
 {
+    public $for;
+
     /**
      * Create a new component instance.
      *

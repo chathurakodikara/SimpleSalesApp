@@ -12,10 +12,13 @@
         </x-slot>
 
         <x-slot name="tbody">
+            @foreach ($products as $product)
             <x-table-tb-tr>
-                <td></td>
-                <td></td>
+                <td>{{ $product->code }}</td>
+                <td>{{ $product->name }}</td>
             </x-table-tb-tr>
+                
+            @endforeach
         </x-slot>
 
     </x-table-wrapper>
