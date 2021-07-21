@@ -7,6 +7,6 @@
 
 @endphp
 
-<select  {!! $attributes->merge(['class' => 'rounded-sm block w-full focus:ring-0 border-blue-gray-300 focus:border-blue-gray-400'.$borderColors]) !!}>
+<select  {!! $attributes->merge(['class' => 'new-form-input '.$borderColors]) !!}>
     {{ $slot }}
 </select>

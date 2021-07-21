@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('unit',15);
 
-            $table->unsignedDecimal('max_retail_price');
+            $table->unsignedDecimal('mrp'); //max_retail_price
             $table->unsignedDecimal('distributor_price');
             $table->unsignedDecimal('weight_volume');
 

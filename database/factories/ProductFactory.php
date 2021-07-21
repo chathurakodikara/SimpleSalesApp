@@ -26,7 +26,7 @@ class ProductFactory extends Factory
             'code' => $this->faker->randomNumber($nbDigits = 6, $strict = false),
             'name' => $this->faker->text($maxNbChars = 25),
             'unit' => $this->faker->randomElement($array = array ('nos','l','kg')),
-            'max_retail_price' => ($cost/100) * 110,
+            'mrp' => ($cost/100) * 110,
             'distributor_price' => $cost,
             'weight_volume' => $this->faker->numberBetween($min = 1, $max = 25),
             'user_id' => 1

@@ -19,6 +19,14 @@
         @apply  flex gap-x-0.5 items-center rounded transition-all duration-200 font-bold px-2 py-1 pr-4 hover:border-blue-gray-200;
     }
 
+    .new-form-input {
+        @apply rounded block w-full focus:ring-0 border-emerald-400 focus:border-emerald-400 focus:shadow py-1.5;
+    }
+
+    .req {
+        @apply text-rose-600;
+    }
+
 }
 
 
