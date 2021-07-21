@@ -15,7 +15,7 @@ class FormModel extends Component
   
     public $sku_id = null;
 
-     protected function rules()
+    protected function rules()
     {
         return [
             'code' =>'required|unique:products,code,'.$this->sku_id,

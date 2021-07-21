@@ -26,8 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('mobile',15)->unique();
 
             $table->string('gender',10)->nullable();
-
             $table->unsignedBigInteger('territory_id')->nullable();
+
             $table->boolean('is_admin')->nullable()->default(0);
 
 

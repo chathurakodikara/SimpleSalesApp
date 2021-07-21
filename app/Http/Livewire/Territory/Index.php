@@ -21,9 +21,7 @@ class Index extends Component
 
     public function render()
     {
-        // $aa = Territory::with('region.zone')->get();
 
-        // dd($aa);
         $territories = Territory::with( 'region.zone')
             ->where('name', 'LIKE', '%'.$this->search.'%')
             ->orWhereHas('region.zone', function ($zone)
