@@ -1,4 +1,4 @@
-<div class=" max-w-5xl mx-auto">
+<div class=" max-w-7xl mx-auto">
  
     <div class=" flex items-end justify-between gap-2  pb-2">
         <div class="flex items-center gap-x-2">
@@ -21,8 +21,14 @@
     <x-table-wrapper>
         <x-slot name="thead">
             <x-table-th-tr>
-                <th>Code</th>
-                <th>Name</th>
+                <th>SKUCode</th>
+                <th>SKU Name</th>
+                <th class=" text-right">MRP</th>
+                <th class=" text-right">Distributor Price</th>
+                <th class=" text-right">Weight/Volume</th>
+                <th class="text-center">Unit</th>
+
+
                 <th></th>
 
             </x-table-th-tr>
@@ -33,7 +39,11 @@
             <x-table-tb-tr>
                 <td>{{ $product->code }}</td>
                 <td>{{ $product->name }}</td>
+                <td class=" text-right">{{ number_format($product->mrp, 2) }}</td>
+                <td class=" text-right">{{ number_format($product->distributor_price, 2) }}</td>
 
+                <td class="text-right">{{ $product->weight_volume *1 }}</td>
+                <td  class=" text-sm text-center">{{ $product->unit }}</td>
                 <td>
                     <x-btn-icon-only class="hover:bg-amber-500 hover:bg-opacity-50" 
                         wire:click.prevent="$emitTo('product.form-model', 'editProduct', {{ $product }})"> 

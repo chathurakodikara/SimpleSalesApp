@@ -16,6 +16,7 @@ class Index extends Component
     public function searchIndex($search)
     {
         $this->search = $search;
+        $this->resetPage();
     }
     public function refreshIndex()
     {
@@ -23,7 +24,6 @@ class Index extends Component
     }
     public function render()
     {
-        $this->resetPage();
         $products = Product::where('name', 'LIKE', '%'.$this->search.'%')
             ->orWhere('code', 'LIKE', '%'.$this->search.'%')
             ->paginate(10);

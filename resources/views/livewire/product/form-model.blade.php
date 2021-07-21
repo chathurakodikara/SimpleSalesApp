@@ -56,13 +56,11 @@
                         <x-form-error for='unit' />
                     </div>
                 </x-form-label>
-                
-            </div>
-                   
+            </div>      
         </x-slot>
         <x-slot name="footer">
             <div class=" flex w-full justify-end">
-                <x-btn-primary wire:click.prevent="store()">Add</x-btn.prymary>
+                <x-btn-primary wire:click.prevent="store()">Save</x-btn.prymary>
             </div>
 
         </x-slot>
