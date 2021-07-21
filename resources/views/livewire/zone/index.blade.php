@@ -32,9 +32,9 @@
         <x-slot name="tbody">
             @foreach ($zones as $zone)
             <x-table-tb-tr>
-                <td>{{ $zone->id }}</td>
-                <td>{{ $zone->long_description }}</td>
-                <td>{{ $zone->short_description }}</td>
+                <td>{{ str_pad($zone->id,3,"0", STR_PAD_LEFT) }}</td>
+                <td class=" capitalize">{{ $zone->long_description }}</td>
+                <td class=" capitalize">{{ $zone->short_description }}</td>
 
                 <td>
                     <x-btn-icon-only class="hover:bg-amber-500 hover:bg-opacity-50" 

@@ -17,7 +17,7 @@ class FormModel extends Component
     public $formTitle = null;
     public $modelZoneForm = false;
 
-    public $zone_code, $long_description, $short_description;
+    public $zone_id, $long_description, $short_description, $zone_code;
 
     public function create()
     {
@@ -31,13 +31,13 @@ class FormModel extends Component
     {
         $this->validate();
 
-        Zone::updateOrCreate(['id' => $this->zone_code ?? null ],[
+        Zone::updateOrCreate(['id' => $this->zone_id ?? null ],[
             'long_description' => $this->long_description,
             'short_description' => $this->short_description,
         ]);
 
         
-        session()->flash('successZone', $this->zone_code ? 'Zone Updated!' : 'Zone Created!');
+        session()->flash('successZone', $this->zone_id ? 'Zone Updated!' : 'Zone Created!');
         $this->emitTo('zone.index', 'refreshIndex');
         
         $this->formReset();
@@ -48,8 +48,8 @@ class FormModel extends Component
     {
         $this->resetErrorBag();
 
-        $this->reset(['long_description', 'short_description']);
-        $this->zone_code = null;
+        $this->reset(['long_description', 'short_description', 'zone_code']);
+        $this->zone_id = null;
     }
 
     public function edit(Zone $zone)
@@ -60,7 +60,8 @@ class FormModel extends Component
 
         $this->modelZoneForm = true;
 
-        $this->zone_code = $zone->id;
+        $this->zone_id = $zone->id;
+        $this->zone_code = str_pad($this->zone_id,3,"0", STR_PAD_LEFT);
         $this->long_description = $zone->long_description;
         $this->short_description = $zone->short_description;
     }

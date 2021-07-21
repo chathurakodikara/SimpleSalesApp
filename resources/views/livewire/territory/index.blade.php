@@ -33,11 +33,11 @@
         <x-slot name="tbody">
             @foreach ($territories as $territory)
             <x-table-tb-tr>
-                <td>{{ $territory->id }}</td>
-                <td>{{ $territory->region->zone->short_description }}</td>
-                <td>{{ $territory->region->name }}</td>
+                <td>{{ str_pad($territory->id,3,"0", STR_PAD_LEFT) }}</td>
+                <td class=" capitalize">{{ $territory->region->zone->short_description }}</td>
+                <td class=" capitalize">{{ $territory->region->name }}</td>
 
-                <td>{{ $territory->name }}</td>
+                <td class=" capitalize">{{ $territory->name }}</td>
 
                 <td>
                     <x-btn-icon-only class="hover:bg-amber-500 hover:bg-opacity-50" 

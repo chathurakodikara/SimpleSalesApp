@@ -23,6 +23,7 @@ class Index extends Component
     {
         $products = Product::where('name', 'LIKE', '%'.$this->search.'%')
             ->orWhere('code', 'LIKE', '%'.$this->search.'%')
+            ->latest()
             ->paginate(10);
         return view('livewire.product.index', ['products' => $products ]);
     }

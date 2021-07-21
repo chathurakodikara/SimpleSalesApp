@@ -22,7 +22,7 @@ class FormModel extends Component
     public $formTitle = '';
     public $modelTerritoryForm = false;
 
-    public $zone_id, $region_id, $territory_code, $territory_name;
+    public $zone_id, $region_id, $territory_code, $territory_name, $territory_id;
 
     public function mount()
     {
@@ -47,13 +47,13 @@ class FormModel extends Component
     {
         $this->validate();
 
-        Territory::updateOrCreate(['id' => $this->territory_code ?? null ],[
+        Territory::updateOrCreate(['id' => $this->territory_id ?? null ],[
             'name' => $this->territory_name,
             'region_id' => $this->region_id,
         ]);
 
 
-        session()->flash('successTerritory', $this->territory_code ? 'Territory Updated!' : 'Territory Created!');
+        session()->flash('successTerritory', $this->territory_id ? 'Territory Updated!' : 'Territory Created!');
 
         $this->emitTo('territory.index', 'refreshIndex');
         $this->formReset();
@@ -64,22 +64,27 @@ class FormModel extends Component
     {
         $this->resetErrorBag();
 
-        $this->reset(['zone_id', 'region_id', 'territory_name']);
-        $this->territory_code = null;
+        $this->reset(['zone_id', 'region_id', 'territory_name','territory_code']);
+        $this->territory_id = null;
     }
 
     public function edit(Territory $territory)
     {
         $this->formReset();
 
+
         $this->formTitle = 'Update Territory';
 
-        $this->modelRegionForm = true;
+        $this->modelTerritoryForm = true;
 
-        $this->zone_id = $territory->zone_id;
+        $this->zone_id = $territory->region->zone->id;
+
+        $this->updatedZoneId();
         $this->region_id = $territory->region_id;
         
-        $this->territory_code = $territory->id;
+        $this->territory_id = $territory->id;
+        $this->territory_code = str_pad($this->territory_id,3,"0", STR_PAD_LEFT);
+
         $this->territory_name = $territory->name;
 
     }

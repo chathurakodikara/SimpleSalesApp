@@ -19,7 +19,8 @@
 
                 <x-form-label>
                     <div>Region Code <span class=" req">*</span></div>
-                    <x-form-input wire:model="region_code" for='' class=" bg-gray-100 border-opacity-20" disabled />
+                    <x-form-input  wire:model="region_code" for='' disabled 
+                        class=" bg-gray-100 border-opacity-20 placeholder-blue-gray-400"  placeholder="Automatically"/>
                 </x-form-label>
 
                 <x-form-label>

@@ -22,7 +22,7 @@
         <x-slot name="thead">
             <x-table-th-tr>
                 <th>SKUCode</th>
-                <th>SKU Name</th>
+                <th class=" capitalize">SKU Name</th>
                 <th class=" text-right">MRP</th>
                 <th class=" text-right">Distributor Price</th>
                 <th class=" text-right">Weight/Volume</th>
@@ -38,7 +38,7 @@
             @foreach ($products as $product)
             <x-table-tb-tr>
                 <td>{{ $product->code }}</td>
-                <td>{{ $product->name }}</td>
+                <td class=" capitalize">{{ $product->name }}</td>
                 <td class=" text-right">{{ number_format($product->mrp, 2) }}</td>
                 <td class=" text-right">{{ number_format($product->distributor_price, 2) }}</td>
 

@@ -13,14 +13,14 @@ class FormModel extends Component
     protected $listeners  = ['create', 'edit'];
 
     protected $rules = [
-        'zone' => 'required|exists:zones,id',
+        'zone_id' => 'required|exists:zones,id',
         'region_name' => 'required|max:150',
     ];
 
     public $formTitle = null;
     public $modelRegionForm = false;
 
-    public $zone_id, $region_name, $region_code;
+    public $region_id, $zone_id, $region_name, $region_code;
 
     public function mount()
     {
@@ -37,15 +37,15 @@ class FormModel extends Component
 
     public function store()
     {
-        // $this->validate();
+        $this->validate();
 
-        Region::updateOrCreate(['id' => $this->region_code ?? null ],[
+        Region::updateOrCreate(['id' => $this->region_id ?? null ],[
             'name' => $this->region_name,
             'zone_id' => $this->zone_id,
         ]);
 
 
-        session()->flash('successRegion', $this->region_code ? 'Region Updated!' : 'Region Created!');
+        session()->flash('successRegion', $this->region_id ? 'Region Updated!' : 'Region Created!');
 
         $this->emitTo('region.index', 'refreshIndex');
         $this->formReset();
@@ -54,10 +54,10 @@ class FormModel extends Component
 
     public function formReset()
     {
-        $this->reset(['region_name', 'zone_id']);
+        $this->reset(['region_name', 'zone_id', 'region_code']);
         $this->resetErrorBag();
 
-        $this->region_code = null;
+        $this->region_id = null;
     }
 
     public function edit(Region $region)
@@ -67,7 +67,10 @@ class FormModel extends Component
         $this->formTitle = 'Update Region';
 
         $this->modelRegionForm = true;
-        $this->region_code = $region->id;
+        $this->region_id = $region->id;
+        $this->region_code = str_pad($this->region_id,3,"0", STR_PAD_LEFT);
+
+
         $this->zone_id = $region->zone_id;
         $this->region_name = $region->name;
 
