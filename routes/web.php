@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\PurchaseOrder;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
@@ -20,6 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::group(['middleware' => ['admin']], function () {
     // Route::resource('products', ProductController::class);
     Route::get('/products', App\Http\Livewire\Product\Index::class)->name('products');
@@ -35,6 +37,7 @@ Route::group(['middleware' => ['distributor']], function () {
     Route::get('/purchase-orders/create', App\Http\Livewire\PurchaseOrder\Create::class)->name('purchase-orders.create');
 
 });
+
 
 
 

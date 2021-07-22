@@ -20,11 +20,15 @@
     }
 
     .new-form-input {
-        @apply rounded block w-full focus:ring-0 border-emerald-400 focus:border-emerald-400 focus:shadow py-1.5;
+        @apply rounded block w-full focus:ring-0 border-emerald-400 focus:border-emerald-400 focus:shadow py-1 px-1.5;
     }
-
+ 
     .req {
         @apply text-rose-600;
+    }
+
+    .po-input-wrapper {
+        @apply p-1 px-3 rounded border border-gray-200;
     }
 
 }

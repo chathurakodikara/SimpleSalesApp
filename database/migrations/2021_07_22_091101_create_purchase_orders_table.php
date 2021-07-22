@@ -20,7 +20,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->foreignId('territory_id')->constrained();
             $table->unsignedDecimal('total',10,2);
 
-            $table->string('remarks');
+            $table->string('remarks')->nullable();
 
             $table->timestamps();
         });

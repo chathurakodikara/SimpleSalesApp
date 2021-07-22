@@ -1,3 +1,5 @@
-<div>
-    {{-- Care about people's approval and you will be their prisoner. --}}
+<div class=" max-w-7xl mx-auto">
+    <livewire:purchase-order.create-header>
+    <livewire:purchase-order.create-product-qty>
 </div>
+
