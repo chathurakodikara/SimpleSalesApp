@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,15 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// going to use login view
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', App\Http\Livewire\Product\Index::class)->name('products');
-Route::get('/zones', App\Http\Livewire\Zone\Index::class)->name('zones');
-Route::get('/regions', App\Http\Livewire\Region\Index::class)->name('regions');
-Route::get('/territories', App\Http\Livewire\Territory\Index::class)->name('territories');
-Route::get('/users', App\Http\Livewire\User\Index::class)->name('users');
+Route::group(['middleware' => ['admin']], function () {
+    // Route::resource('products', ProductController::class);
+    Route::get('/products', App\Http\Livewire\Product\Index::class)->name('products');
+    Route::get('/zones', App\Http\Livewire\Zone\Index::class)->name('zones');
+    Route::get('/regions', App\Http\Livewire\Region\Index::class)->name('regions');
+    Route::get('/territories', App\Http\Livewire\Territory\Index::class)->name('territories');
+    Route::get('/users', App\Http\Livewire\User\Index::class)->name('users');
+});
+
+Route::group(['middleware' => ['distributor']], function () {
+
+    Route::get('/purchase-orders', App\Http\Livewire\PurchaseOrder\Index::class)->name('purchase-orders.index');
+    Route::get('/purchase-orders/create', App\Http\Livewire\PurchaseOrder\Create::class)->name('purchase-orders.create');
+
+});
 
 
 

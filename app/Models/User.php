@@ -35,6 +35,7 @@ class User extends Authenticatable
         'gender', 
         'territory_id', 
         'username',
+        'is_admin'
     ];
 
     /**
@@ -66,6 +67,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
 
     public function territory()
     {
