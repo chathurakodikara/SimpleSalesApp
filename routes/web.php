@@ -18,8 +18,8 @@ use App\Http\Controllers\ProductController;
 
 // going to use login view
 Route::get('/', function () {
-    return view('auth.login');
-})->middleware('guest');
+    return view('welcome');
+});
 
 
 
@@ -60,6 +60,6 @@ Route::group(['middleware' => ['can:admin']], function () {
 
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
