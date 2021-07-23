@@ -34,6 +34,8 @@
 
     <div class=" bg-white p-4 mt-4 flex justify-end">
         
+
+        <x-msg-success sKey="successPO" />
         <x-btn-primary wire:click.prevent="submitPoProduct" > ADD PO </x-btn-primary>
     </div>
 </div>

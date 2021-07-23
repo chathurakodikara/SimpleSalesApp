@@ -7,8 +7,13 @@ use Livewire\Component;
 
 class CreateProductQty extends Component
 {
+
+    protected $listeners  = ['loadProducts'];
+
     public $products;
     public $product_id, $distributor_price, $quantity, $total, $name, $code ;
+    public $po, $poProducts ;
+
     public function mount()
     {
         $this->products = Product::all();
@@ -20,10 +25,23 @@ class CreateProductQty extends Component
                 $this->distributor_price[$q->id] = $q->distributor_price;
                 $this->name[$q->id] =  $q->name;
                 $this->code[$q->id] =  $q->code;
-                $this->quantity[$q->id] = 0;
+                $this->quantity[$q->id] =  0;
+                $this->total[$q->id] =  0;
+                // ;
                 return ;
             });
         }
+
+        $this->poProducts = $this->po->products ?? null;
+
+        $this->showPrePo();
+
+
+    }
+
+    public function loadProducts($loadProducts)
+    {
+        dd($loadProducts);
     }
 
     public function updatedQuantity()
@@ -53,6 +71,20 @@ class CreateProductQty extends Component
        
         $this->emitTo('purchase-order.create-header', 'poProductQty', $data);
     }
+
+    public function showPrePo()
+    {
+        if ($this->poProducts) {
+
+            $this->poProducts->map(function ($product)
+            {
+                $pivot = $product->pivot;
+                $this->quantity[$product->id] = $pivot->quantity;
+                $this->total[$product->id] =  $pivot->quantity * $pivot->unit_price;
+            });
+        }
+    }
+
     public function render()
     {
         return view('livewire.purchase-order.create-product-qty');

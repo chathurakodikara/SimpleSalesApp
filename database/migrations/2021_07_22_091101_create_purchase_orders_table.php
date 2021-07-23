@@ -18,7 +18,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->string('no', 10);
             $table->foreignId('user_id')->constrained();
             $table->foreignId('territory_id')->constrained();
-            $table->unsignedDecimal('total',10,2);
+            // $table->unsignedDecimal('total',10,2);
 
             $table->string('remarks')->nullable();
 

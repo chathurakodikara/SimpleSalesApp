@@ -7,6 +7,7 @@ use App\Models\Zone;
 use App\Models\Region;
 use Livewire\Component;
 use App\Models\Territory;
+use Illuminate\Support\Str;
 use App\Models\PurchaseOrder;
 
 class CreateHeader extends Component
@@ -15,11 +16,15 @@ class CreateHeader extends Component
     protected $listeners  = ['poProductQty'];
 
     public $zones = [], $regions = [], $territories = [], $distributers = [];
-    public $zone_id, $region_id, $territory_id, $distributer_id, $remarks, $poProducts;
+    public $zone_id, $region_id, $territory_id, $distributer_id, $remarks, $poProducts, $po_no, $date;
+
+    public $po;
     public function mount()
     {
         $this->zones = Zone::all();
         $this->distributers = User::all();
+        
+        $this->updatePo($this->po);
 
     }
 
@@ -54,7 +59,7 @@ class CreateHeader extends Component
 
 
         $lastPurchaseOrder = PurchaseOrder::max('id');
-        $digits = str_pad($lastPurchaseOrder ? $lastPurchaseOrder + 1 : 1 , 3,"0",STR_PAD_LEFT);
+        $digits = Str::padLeft($lastPurchaseOrder ? $lastPurchaseOrder + 1 : 1 , 3, '0'); 
         $fullPoNumber = 'TEPO'.$digits ;
 
 
@@ -62,13 +67,36 @@ class CreateHeader extends Component
             'no' => $fullPoNumber,
             'territory_id' => $this->territory_id,
             'user_id' => $this->distributer_id,
-            'total' => 123,
             'remarks' => $this->remarks
         ]);
 
         $purchaseOrder->products()->sync($data);
 
+        session()->flash('successPO', $this->po ? 'PO Updated!' : 'PO Created!');
+
+        return redirect()->route('purchase-orders.edit', $purchaseOrder);
+
     }
+
+    public function updatePo($po)
+    {
+        if (!$po) {
+            return ;
+        }
+ 
+        $this->po_no = $po->no;
+        $this->date = $po->created_at->format('d-m-Y');
+        
+        $this->zone_id = $po->territory->region->zone_id;
+        $this->region_id = $po->territory->region->id;
+        $this->territory_id = $po->territory->id;
+
+        $this->updated();
+        $this->distributer_id = $po->user_id;
+        $this->remarks = $po->remarks;
+
+    }
+
     public function render()
     {
         return view('livewire.purchase-order.create-header');

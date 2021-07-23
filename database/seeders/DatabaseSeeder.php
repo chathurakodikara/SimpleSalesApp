@@ -3,11 +3,15 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Zone;
+use App\Models\Region;
 use App\Models\Product;
 use App\Models\Material;
+use App\Models\Territory;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\MasterDataSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,11 +25,14 @@ class DatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         User::truncate();
         Product::truncate();
-
+        Zone::truncate();
+        Region::truncate();
+        Territory::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
         $this->call([
             UserSeeder::class,
+            MasterDataSeeder::class, // Zone, Region, Territory in the seeder
         ]);
 
 

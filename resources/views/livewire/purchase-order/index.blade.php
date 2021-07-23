@@ -33,16 +33,14 @@
 
         <x-form-label>
             <div>From</div>
-            <x-form-input wire:model="date" 
-                class=" col-span-3 border-gray-300 focus:border-gray-400 bg-gray-50 placeholder-blue-gray-400" />
-            <x-form-error for='date' />
+            <x-form-date wire:model="date_from" class=" col-span-3 " />
+            <x-form-error for='date_from' />
         </x-form-label>
 
         <x-form-label>
             <div>To</div>
-            <x-form-input type="date" wire:model="date" 
-                class=" col-span-3 border-gray-300 focus:border-gray-400 bg-gray-50 placeholder-blue-gray-400" />
-            <x-form-error for='date' />
+            <x-form-date wire:model="date_to" class=" col-span-3 " />
+            <x-form-error for='date_to' />
         </x-form-label>
 
         

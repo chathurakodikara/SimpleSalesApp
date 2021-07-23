@@ -31,12 +31,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/purchase-orders', App\Http\Livewire\PurchaseOrder\Index::class)->name('purchase-orders.index');
 });
 
-Route::group(['middleware' => ['distributor']], function () {
+Route::group(['middleware' => ['can:distributor']], function () {
     Route::get('/purchase-orders/create', App\Http\Livewire\PurchaseOrder\Create::class)->name('purchase-orders.create');
-
+    Route::get('/purchase-orders/{po}', App\Http\Livewire\PurchaseOrder\Create::class)->name('purchase-orders.edit');
 });
 
-Route::group(['middleware' => ['admin']], function () {
+Route::group(['middleware' => ['can:admin']], function () {
     // Route::resource('products', ProductController::class);
     Route::get('/products', App\Http\Livewire\Product\Index::class)->name('products');
     Route::get('/zones', App\Http\Livewire\Zone\Index::class)->name('zones');

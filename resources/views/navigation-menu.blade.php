@@ -54,18 +54,17 @@
                         {{ __('Users') }}
                     </x-jet-nav-link>
                 </div>
-  
                 @endcan
 
-            
-
-                @if (auth()->user()->is_admin ==0)
+                @can('distributor')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-6 sm:flex">
                         <x-jet-nav-link href="{{ route('purchase-orders.create') }}" :active="request()->routeIs('purchase-orders.create')">
                             {{ __('PO New') }}
                         </x-jet-nav-link>
                     </div>
-                @endif
+                @endcan
+                
+
                 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-6 sm:flex">
                     <x-jet-nav-link href="{{ route('purchase-orders.index') }}" :active="request()->routeIs('purchase-orders.index')">
@@ -137,6 +136,7 @@
                             @else
                                 <span class="inline-flex rounded-md">
                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+       
                                         @if (Auth::user()->isAdmin())
                                             <div class=" text-right">
                                                 <div>Welcome System Admin</div>
