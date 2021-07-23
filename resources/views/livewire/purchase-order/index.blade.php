@@ -72,7 +72,9 @@
                <x-po-index-td-wrapper > {{ $purchaseOrder->order_time }} </x-po-index-td-wrapper>
                <x-po-index-td-wrapper class=" text-right"> {{ number_format($purchaseOrder->subtotal, 2) }} </x-po-index-td-wrapper>
                <x-po-index-td-wrapper class=" p-0" > 
-                   <x-btn-secondary> View </x-btn-secondary> </x-po-index-td-wrapper>
+                  
+                   <a href="{{ route('purchase-orders.edit', $purchaseOrder) }}">View</a>
+                </x-po-index-td-wrapper>
 
             </div>
         @endforeach

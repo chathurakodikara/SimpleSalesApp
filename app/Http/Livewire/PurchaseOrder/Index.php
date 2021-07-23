@@ -73,6 +73,3 @@ class Index extends Component
     }
 }
 
-
-
-// $result = ModelName::whereBetween('created_at', ->get();
