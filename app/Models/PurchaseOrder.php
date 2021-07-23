@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Product;
+use App\Models\Territory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -26,6 +28,26 @@ class PurchaseOrder extends Model
             return $product->pivot->quantity * $product->pivot->unit_price;
         })->sum();
 
+    }
+
+    public function territory()
+    {
+        return $this->belongsTo(Territory::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getOrderDateAttribute()
+    {
+        return $this->created_at->format('d/m/Y');
+    }
+
+    public function getOrderTimeAttribute()
+    {
+        return $this->created_at->format('h:i A');
     }
 
 }

@@ -22,16 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('nic',12)->unique();
 
             $table->string('address');
-
             $table->string('mobile',15)->unique();
-
             $table->string('gender',10)->nullable();
             $table->unsignedBigInteger('territory_id')->nullable();
-
             $table->boolean('is_admin')->nullable()->default(0);
-
-
-
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

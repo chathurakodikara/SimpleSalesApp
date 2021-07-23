@@ -18,7 +18,10 @@ class DistributorMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->isAdmin() == false) {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
+        if ( auth()->user()->is_admin ==0) {
             return $next($request);
         }
         return redirect(RouteServiceProvider::HOME);

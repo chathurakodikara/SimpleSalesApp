@@ -5,12 +5,28 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('purchase-orders.index') }}">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
+                 {{-- @can('distributor')
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio facilis quidem aperiam modi dolorem voluptate deleniti vero repudiandae similique architecto nulla qui magni inventore odio dolor, laboriosam eveniet amet reprehenderit!
+                <div class="hidden space-x-8 sm:-my-px sm:ml-6 sm:flex">
+                    <x-jet-nav-link href="{{ route('purchase-orders.create') }}" :active="request()->routeIs('purchase-orders.create')">
+                        {{ __('New PO') }}
+                    </x-jet-nav-link>
+                </div>
+                    
+                @endcan --}}
+
+           
+
+                
+
 
                 <!-- Navigation Links -->
+                @can('admin')
+                    
                 <div class="hidden space-x-8 sm:-my-px sm:ml-6 sm:flex">
                     <x-jet-nav-link href="{{ route('products') }}" :active="request()->routeIs('products')">
                         {{ __('Products') }}
@@ -38,6 +54,25 @@
                         {{ __('Users') }}
                     </x-jet-nav-link>
                 </div>
+  
+                @endcan
+
+            
+
+                @if (auth()->user()->is_admin ==0)
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-6 sm:flex">
+                        <x-jet-nav-link href="{{ route('purchase-orders.create') }}" :active="request()->routeIs('purchase-orders.create')">
+                            {{ __('PO New') }}
+                        </x-jet-nav-link>
+                    </div>
+                @endif
+                
+                <div class="hidden space-x-8 sm:-my-px sm:ml-6 sm:flex">
+                    <x-jet-nav-link href="{{ route('purchase-orders.index') }}" :active="request()->routeIs('purchase-orders.index')">
+                        {{ __('Purchase Orders') }}
+                    </x-jet-nav-link>
+                </div>
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -167,8 +202,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-jet-responsive-nav-link href="{{ route('purchase-orders.index') }}" :active="request()->routeIs('purchase-orders.index')">
+                {{ __('Purchase Orders') }}
             </x-jet-responsive-nav-link>
         </div>
 

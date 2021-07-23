@@ -18,9 +18,23 @@ use App\Http\Controllers\ProductController;
 
 // going to use login view
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
+})->middleware('guest');
+
+
+
+
+
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    
+    Route::get('/purchase-orders', App\Http\Livewire\PurchaseOrder\Index::class)->name('purchase-orders.index');
 });
 
+Route::group(['middleware' => ['distributor']], function () {
+    Route::get('/purchase-orders/create', App\Http\Livewire\PurchaseOrder\Create::class)->name('purchase-orders.create');
+
+});
 
 Route::group(['middleware' => ['admin']], function () {
     // Route::resource('products', ProductController::class);
@@ -31,12 +45,11 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/users', App\Http\Livewire\User\Index::class)->name('users');
 });
 
-Route::group(['middleware' => ['distributor']], function () {
 
-    Route::get('/purchase-orders', App\Http\Livewire\PurchaseOrder\Index::class)->name('purchase-orders.index');
-    Route::get('/purchase-orders/create', App\Http\Livewire\PurchaseOrder\Create::class)->name('purchase-orders.create');
 
-});
+
+
+
 
 
 

@@ -1,0 +1,1 @@
+<div class=" text-center po-input-wrapper uppercase bg-teal-700 text-gray-200 ">{{ $slot }}</div>
