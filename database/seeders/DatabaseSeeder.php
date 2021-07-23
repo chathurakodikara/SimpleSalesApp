@@ -31,8 +31,8 @@ class DatabaseSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
         $this->call([
-            UserSeeder::class,
             MasterDataSeeder::class, // Zone, Region, Territory in the seeder
+            UserSeeder::class,
         ]);
 
 

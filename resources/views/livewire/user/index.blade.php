@@ -40,7 +40,7 @@
                 <td>{{ $user->username }}</td>
                 <td>{{ $user->nic }}</td>
                 <td>{{ $user->mobile }}</td>
-                <td>{{ $user->territory->name }}</td>
+                <td>{{ $user->territory->name ?? null }}</td>
                 <td>
                     <x-btn-icon-only class="hover:bg-amber-500 hover:bg-opacity-50" 
                         wire:click.prevent="$emitTo('user.form-model', 'edit', {{ $user }})"> 
