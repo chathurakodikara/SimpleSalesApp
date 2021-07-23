@@ -8,6 +8,6 @@ Zones, Regions, Territories and Products has Seeders. Feel free to use :D php ar
 https://ceylonlinux.herokuapp.com/
 
 Admim
-Username: admin.
+Username: admin  
 Password: admin123
 
