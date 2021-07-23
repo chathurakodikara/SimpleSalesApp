@@ -13,7 +13,7 @@ class PurchaseOrder extends Model
     use HasFactory;
     protected $guarded = [];
 
-    protected $appends = ['subtotal'];
+    protected $appends = ['subtotal', 'order_time', 'order_date'];
 
     public function products()
     {

@@ -43,7 +43,9 @@
             <x-form-error for='date_to' />
         </x-form-label>
 
-        
+        <button class=" bg-green-600 focus:outline-none hover:bg-green-500 transition-colors py-3 rounded text-white col-start-5"   
+            wire:click="export">Excel Export</button>
+
     </div>
 
 
