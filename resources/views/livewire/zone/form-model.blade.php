@@ -15,13 +15,13 @@
 
                 <x-form-label>
                     <div>Long description <span class=" req">*</span></div>
-                    <x-form-input wire:model="long_description" for='long_description'/>
+                    <x-form-input class="col-span-2" wire:model="long_description" for='long_description'/>
                     <x-form-error for='long_description' />
                 </x-form-label>
 
                 <x-form-label>
                     <div>Short description <span class="req">*</span></div>
-                    <x-form-input class="col-span-3" wire:model="short_description" for='short_description'/>
+                    <x-form-input class="col-span-2"  wire:model="short_description" for='short_description'/>
                     <x-form-error for='short_description' />
                 </x-form-label>
 
