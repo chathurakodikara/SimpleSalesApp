@@ -29,14 +29,15 @@ class DatabaseSeeder extends Seeder
         Region::truncate();
         Territory::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        Product::factory(10)->create();
         
         $this->call([
-            MasterDataSeeder::class, // Zone, Region, Territory in the seeder
             UserSeeder::class,
+            MasterDataSeeder::class, // Zone, Region, Territory in the seeder
         ]);
 
 
-        Product::factory(10)->create();
 
     }
 }
